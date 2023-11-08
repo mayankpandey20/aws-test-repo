@@ -9,12 +9,11 @@ phases:
             - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 962804699607.dkr.ecr.us-west-2.amazonaws.com
     build:
         commands:
-            - echo build Docker image on 'date'
-            - cd src
+            - echo build Docker image on `date`
             - docker build -t img23:latest .
             - docker tag img23:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/mk-c2-img:latest
     post_build:
         commands:
-            - echo build Docker image complete 'date'
+            - echo build Docker image complete `date`
             - echo push latest Docker images to ECR...
             - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/mk-c2-img:latest
